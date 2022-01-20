@@ -1,0 +1,27 @@
+{
+  "project":"iaa_ew_for_mobile",
+  "version":"2.0.0",
+  "desc":"iaa_ew_for_mobile",
+  "type":"vue",
+  "link_id":"",
+  "plugins":[],
+  "env":{
+    "default":{
+      "log_level":"debug"
+    },
+    "product":{
+      "log_level":"error"
+    }
+  },
+  "config": {
+    "packager": {
+      "env": [
+        "dev",
+        "uat"
+      ],
+      "files": [
+        "config.${env}.js"
+      ]
+    }
+  }
+}

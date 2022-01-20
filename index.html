@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"
+    />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta name="Keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-orientation" content="portrait" />
+    <!-- 引入第三方库 -->
+    <script src="config.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="./static/jweixin-1.2.0.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
+    <script src="static/sensorsdata.min.js"></script>
+
+    <script>
+      var sensors = window["sensorsDataAnalytic201505"];
+      // 测试环境： https://scetest-api.ghzq.com.cn/sa?project=default
+      // 正式环境 - https://scmd.ghzq.com.cn:8443/sa?project=production
+      sensors.init({
+        server_url: "https://scetest-api.ghzq.com.cn/sa?project=default",
+        is_track_single_page: true, // 单页面配置默认开启，若页面中有锚点设计，需要将该配置删除，否则触发锚点会多触发 $pageview 事件
+        use_client_time: true,
+        show_log: true,
+        send_type: "beacon",
+        heatmap: {
+          //是否开启点击图，default 表示开启，自动采集 $WebClick 事件，可以设置 'not_collect' 表示关闭。
+          clickmap: "not_collect",
+          //是否开启触达注意力图，not_collect 表示关闭，不会自动采集 $WebStay 事件，可以设置 'default' 表示开启。
+          scroll_notice_map: "not_collect",
+        },
+      });
+    </script>
+    <title id="HeadTitle"></title>
+  </head>
+  <body>
+    <div id="main">
+      <!-- 根页面 -->
+      <view id="root" home="true" />
+      <!-- 首页 -->
+      <view id="root/home" title="资配平台" />
+      <!-- 首页-搜索页面 -->
+      <view id="root/serch" />
+      <!-- 首页-客户动态页面 -->
+      <view id="root/customerSatatus" title="客户动态" />
+      <!-- 资产配置介绍页面- 点击banner进入-->
+      <view id="root/assetIntroduce" title="智能资产配置平台" />
+      <!-- 账户诊断模块 -->
+      <!-- 账户诊断-选择客户页面 -->
+      <view id="root/accountDiagnose/chooseCustomer" title="选择客户" />
+      <!-- 账户诊断-更多筛选页面 -->
+      <view id="root/accountDiagnose/serchMore" />
+      <!-- 客户详情 -->
+      <!-- 账户诊断-选择客户页面-客户详情页面 -->
+      <view id="root/customerDetail" />
+      <!-- 客户详情--基本信息页面 -->
+      <view id="root/customerDetail/baseMessage" parent="root/customerDetail" title="账户诊断" />
+      <!-- 客户详情--资产分析页面 -->
+      <view id="root/customerDetail/assetAnalysis" parent="root/customerDetail" title="账户诊断" />
+      <!-- 客户详情--交易分析页面 -->
+      <view
+        id="root/customerDetail/transactionAnalysis"
+        parent="root/customerDetail"
+        title="账户诊断"
+      />
+      <!-- 客户详情--诊断结论页面 -->
+      <view id="root/customerDetail/conclusion" parent="root/customerDetail" title="账户诊断" />
+      <!-- 客户详情--诊断结论页面 底部（获取配置建议）按钮跳转至  试算资产配置方案页面-->
+      <!-- 试算资产配置方案页面 -->
+      <view id="root/customerDetail/configurationPlan" title="资产配置" />
+      <!-- 生成PDF报告 -->
+      <!-- 报告创建页面 -->
+      <view id="root/createPDFreport/createReport" />
+      <!-- 选择风格页面 -->
+      <view id="root/createPDFreport/chooseStyle" />
+      <!-- 报告生成等待页面 -->
+      <!-- <view id="root/createPDFreport/waitCreate" /> -->
+      <!-- 个人账户诊断报告预览页面 -->
+      <view id="root/createPDFreport/reportPreview" title="账户诊断报告" />
+      <!-- 资产配置模块 -->
+      <!-- 资产配置页面 -->
+      <view id="root/assetAllocation/assetAllocation" title="资产配置" />
+      <!-- 历史报告模块 -->
+      <!-- 历史报告列表页面（当前登录用户名下的客户）-- -->
+      <view id="root/historyReport/historyReport" title="历史报告" />
+      <!-- 客户的历史报告页面 -->
+      <view id="root/historyReport/custonHistoryReport" />
+      <!-- 历史报告更多筛选页面 -->
+      <view id="root/historyReport/reportMoreSearch" />
+      <!-- 产品列表模板 -->
+      <!-- 产品列表页面 -->
+      <view id="root/productsList/productsTab" />
+      <!-- 产品列表---产品组合池页面 -->
+      <view
+        id="root/productsList/productsTab/productCombination"
+        parent="root/productsList/productsTab"
+      />
+      <!-- 产品列表---基金池页面 -->
+      <view id="root/productsList/productsTab/fundPool" parent="root/productsList/productsTab" />
+
+      <!-- 资配建议书模块 -->
+      <view id="root/assetAllocationProposal/selectChapter" title="选择章节" />
+      <view id="root/assetAllocationProposal/investmentAdvice" title="投顾观点" />
+      <view id="root/assetAllocationProposal/investmentNeeds" title="投资需求" />
+      <view id="root/assetAllocationProposal/assetAllocation" title="资产配置" />
+      <!--观点审核模块-->
+      <view id="root/view/search" />
+      <view id="root/view/viewDetail" />
+    </div>
+    <!--<snippet id="footer"/>-->
+    <!-- 观点审核--观点下架页面-->
+    <view id="root/viewSlowdown" />
+
+    <script src="app.js"></script>
+  </body>
+  <script></script>
+</html>
